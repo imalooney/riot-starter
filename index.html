@@ -7,14 +7,28 @@
 
 <div id="video-display"></div>
 <div id="video-list"></div>
+<div id="genre-stats"></div>
 
 <form id="new-video">
   <!-- TODO: 2 inputs, 1 button -->
+  <label for="title">Title:</label>
+  <input type="text" name="title" class="title"> 
+  
+  <label for="youtubeID">YoutubeID:</label>
+  <input type="text" name="youtubeID" class="youtubeID"> 
+  
+  <input id="submit" type="submit" value="Add Video">
 </form>
 
 
 <div id="templates">
   <!-- TODO: video-list-item template -->
+  <script class="video-list-item" type="text/templates">
+    <a href="https://www.youtube.com/watch?v={ youtubeId }"><h3>{ title }</h3></a>
+  </script>
+  <script class="genre-stats" type="text/templates">
+    <p>The piano genre has { stats } video(s).</p>
+  </script>
 </div>
 
 <script src="vendor/js/jquery-1.10.2.min.js"></script>
