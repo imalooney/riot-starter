@@ -47,12 +47,16 @@ $('#new-video').on('submit', function(e){
   e.preventDefault();
   var new_title = $('.title').val();
   var new_youtubeId = $('.youtubeId').val();
+  var new_genre = $('.genre').val();
   var new_video = {
     title: new_title,
-    youtubeId: new_youtubeId
+    youtubeId: new_youtubeId,
+    genre: new_genre
   };
   var newVideo = $.render(itemTemplate, new_video);
   $('#video-list').append(newVideo);
   videos.push(new_video);
   renderGenreStats();
 });
+
+
