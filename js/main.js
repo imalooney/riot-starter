@@ -9,7 +9,6 @@ var videos = [
 var itemTemplate = $('#templates .video-list-item').html();
 
 var renderVideoList = function () {
-  // TODO
   for( i = 0; i < videos.length; i++ ) {
     var newItemHtml = $.render(itemTemplate, videos[i]);
     $('#video-list').append(newItemHtml);
@@ -20,56 +19,25 @@ var genreTemplate = $('#templates .genre-stats').html();
 
 var renderGenreStats = function() {
   // Create empty stats object to hold genrecounts
-  var stats = {};
   $('#genre-stats').empty();
+  var stats = {};
   for( i = 0; i < videos.length; i++ ) {
     // iterate through videos object to get genre property value
     var genreName = videos[i].genre;
-    
+
+    if(stats[genreName] === undefined) {
+      stats[genreName] = 0;
+    }
+
+    stats[genreName] += 1;
   }
 
   for (var genre in stats) {
     var genreCount = stats[genre];
-    // TODO
-
+    var genreHtml = $.render(genreTemplate, {genre: genre, genreCount: genreCount});
+    $('#genre-stats').append(genreHtml);
   }
-
-
-  // var newGenre = {
-  //   genre: genreName,
-  //   count: genreCount
-  // };
-  // console.log('genreCount:', genreCount);
-  // console.log('Stats object:', stats);
-
-  // var renderHtmlStats = $.render(genreTemplate, newGenre);
-  // $('#genre-stats').append(renderedHtmlStats);
 };
-
-
-// var renderGenreStats = function() {
-//   // Create empty stats object to hold genrecounts
-//   var stats = {};
-//   $('#genre-stats').empty();
-//   for( i = 0; i < videos.length; i++ ) {
-//     // iterate through videos object to get genre property value
-//     var genre = videos[i].genre;
-//     // evaluate that property against the stats object
-//     var genres = [];
-//     genres.push(genre);
-//     for(var genre in stats) {
-//       var genreCount = stats[genre];
-
-//       if( genreCount === undefined) {
-//         genreCount = 0;
-//       }
-//       genreCount += 1;
-//       console.log('genrecount', genreCount);
-//     }
-//     console.log('Genre object', genre);
-//   }
-//   console.log('Stats object:', stats);
-// };
 
 renderVideoList();
 
